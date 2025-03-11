@@ -5,6 +5,7 @@ import Header from "./components/Header";
 import TaskForm from "./components/TaskForm";
 import TaskList from "./components/TaskList";
 import { ITask } from "./interfaces/ITask";
+import Modal from "./components/Modal";
 
 function App() {
   const [tasks, setTasks] = useState<ITask[]>([]);
@@ -15,6 +16,7 @@ function App() {
 
   return (
     <div>
+      <Modal children={<TaskForm btnText="Editar Tarefa" taskList={tasks}/>}/>
       <Header />
 
       <main className={styles.main}>
