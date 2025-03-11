@@ -7,6 +7,7 @@
 }
 
 .modal {
+    border-radius: 10px;
     position: absolute;
     top: 10%;
     left: 0;

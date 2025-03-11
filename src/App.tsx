@@ -10,6 +10,19 @@ import Modal from "./components/Modal";
 function App() {
   const [tasks, setTasks] = useState<ITask[]>([]);
 
+  const hideOrShowModal = (display: boolean) => {
+    const modal = document.querySelector("#modal");
+    if(display) {
+      modal!.classList.remove("hide");
+    } else {
+      modal!.classList.add("hide");
+    }
+  };
+  
+  const handleEditTask = () => {
+    hideOrShowModal(true);
+  };
+
   const handleDeleteTask = (id: number) => {
     setTasks(tasks.filter((task) => task.id !== id));
   };
@@ -31,7 +44,7 @@ function App() {
 
         <div>
           <h2>Suas tarefas: </h2>
-          <TaskList taskList={tasks} handleDelete={handleDeleteTask} />
+          <TaskList taskList={tasks} handleEdit={handleEditTask} handleDelete={handleDeleteTask} />
         </div>
       </main>
 
