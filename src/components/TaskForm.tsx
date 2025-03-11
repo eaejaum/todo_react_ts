@@ -1,12 +1,14 @@
-import { ChangeEvent, useState } from "react";
+import { ChangeEvent, FormEvent, useState } from "react";
 import styles from "./TaskForm.module.css";
 import { ITask } from "../interfaces/ITask";
 
 type Props = {
     btnText: string;
+    taskList: ITask[];
+    setTaskList?: React.Dispatch<React.SetStateAction<ITask[]>>;
 }
 
-const TaskForm = ({ btnText }: Props) => {
+const TaskForm = ({ taskList, setTaskList, btnText }: Props) => {
     const [id, setId] = useState<number>(0);
     const [title, setTitle] = useState<string>("");
     const [difficulty, setDifficulty] = useState<number>(0);
@@ -19,8 +21,17 @@ const TaskForm = ({ btnText }: Props) => {
         }
     };
 
-    const addTaskHandler = () => {
-
+    const addTaskHandler = (e: FormEvent<HTMLFormElement>) => {
+        e.preventDefault();
+        const id = Math.floor(Math.random() * 1000);
+        const newTask: ITask = {
+            id,
+            title,
+            difficulty
+        }
+        setTaskList!([...taskList, newTask]);
+        setTitle("");
+        setDifficulty(0);
     };
 
   return (
